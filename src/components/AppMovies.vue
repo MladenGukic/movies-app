@@ -1,18 +1,21 @@
 <template>
-  <div>
-      <ul>
-      <li v-for="movie in movies" :key="movie.id">
-        <hr />
-        <b>{{ movie.title }}</b>
-      </li>
-    </ul>
+  <div class="card">
+      <ul v-for="movie in movies" :key="movie.id">
+      <movie-row :movie="movie"/>
+      </ul>
   </div>
 </template>
 
 <script>
+import MovieRow from './MovieRow'
 import { movieService } from '../services/movies-service'
 
 export default {
+    name: 'AppMovies',
+    components: {
+        MovieRow
+    },
+
     data () {
         return {
             movies: []
