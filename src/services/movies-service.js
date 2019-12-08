@@ -5,8 +5,8 @@ export default class MovieService {
         axios.defaults.baseURL = 'http://localhost:8000/api/'
     }
 
-    getAll() {
-        return axios.get("movies")
+    getAll(title) {
+        return axios.get("movies", {params: {title}})
     }
 
     get(id) {

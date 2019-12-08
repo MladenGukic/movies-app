@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/movies">Movies</a>
+  <router-link class="navbar-brand" to="/movies">  Movies </router-link>
 </nav>
   <router-view/>
   </div>
 </template>
 
 <script>
-
 export default {
+  
 }
 </script>
 
