@@ -30,17 +30,24 @@ export default {
 
     data() {
       return {
-        selected: false
+        
       }
     },
 
     props: {
-        movie: {}
+        movie: {},
+        selectedMoviesIds: Array
+    },
+
+    computed: {
+    selected() {
+      return this.selectedMoviesIds
+        .indexOf(this.movie.id) > -1;
+      }
     },
 
     methods: {
       onSelect() {
-        this.selected = true
         this.$emit('selected-movie', this.movie)
       }
     }

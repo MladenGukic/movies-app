@@ -1,13 +1,17 @@
 <template>
-  <div class="card">
+  <div class="container">
       <movie-search @search-term-updated="onSearchTermChanged"/>
-      <strong> Selected movies: {{selectedMoviesIds.length}} </strong>
-      <ul v-for="movie in movies" :key="movie.id">
-      <movie-row :movie="movie" @selected-movie="onSelectMovie"/>
-      </ul>
-      <div v-if="!movies.length">
-       <h1> No Movies </h1>
-      </div>
+            <strong> Selected movies: {{selectedMoviesIds.length}} </strong>
+            <button class="btn btn-primary btn-sm" @click="selectAllMovies"> Select All </button>
+            <button class="btn btn-secondary btn-sm" @click="deselectAllMovies"> Deselect All </button>
+      <div class="card">
+            <ul v-for="movie in movies" :key="movie.id">
+                <movie-row :movie="movie" @selected-movie="onSelectMovie" :selectedMoviesIds="selectedMoviesIds"/>
+            </ul>
+            <div v-if="!movies.length">
+                <h1> No Movies </h1>
+            </div>
+        </div>
   </div>
 </template>
 
@@ -40,6 +44,14 @@ export default {
 
         onSelectMovie(movie) {
             this.selectedMoviesIds.push(movie.id)
+        },
+
+        selectAllMovies() {
+            this.selectedMoviesIds = this.movies.map(movie => movie.id)
+        },
+
+        deselectAllMovies() {
+            this.selectedMoviesIds = []
         }
     },
 
