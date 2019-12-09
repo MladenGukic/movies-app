@@ -1,8 +1,9 @@
 <template>
   <div class="card">
       <movie-search @search-term-updated="onSearchTermChanged"/>
+      <strong> Selected movies: {{selectedMoviesIds.length}} </strong>
       <ul v-for="movie in movies" :key="movie.id">
-      <movie-row :movie="movie"/>
+      <movie-row :movie="movie" @selected-movie="onSelectMovie"/>
       </ul>
       <div v-if="!movies.length">
        <h1> No Movies </h1>
@@ -25,6 +26,7 @@ export default {
     data () {
         return {
             movies: [],
+            selectedMoviesIds: []
         }
     },
 
@@ -34,6 +36,10 @@ export default {
             .then(r => {
             this.movies = r.data
             })
+        },
+
+        onSelectMovie(movie) {
+            this.selectedMoviesIds.push(movie.id)
         }
     },
 

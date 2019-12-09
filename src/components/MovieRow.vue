@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :class="{selected : selected}">
 <table class="table">
   <tbody>
     <tr>
@@ -20,6 +20,7 @@
     </tr>
   </tbody>
 </table>
+  <button type="button" class="btn btn-primary" @click="onSelect"> Select </button>
 </div>
 </template>
 
@@ -27,12 +28,27 @@
 export default {
     name: 'MovieRow',
 
+    data() {
+      return {
+        selected: false
+      }
+    },
+
     props: {
         movie: {}
+    },
+
+    methods: {
+      onSelect() {
+        this.selected = true
+        this.$emit('selected-movie', this.movie)
+      }
     }
 }
 </script>
 
 <style>
-
+  .selected {
+    background-color: rgba(0, 132, 255, 0.384)
+  }
 </style>
