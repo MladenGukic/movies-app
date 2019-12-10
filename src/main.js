@@ -4,6 +4,7 @@ import App from './App.vue'
 import AppMovies from './components/AppMovies'
 import AddMovie from './components/AddMovie'
 import AppLogin from './components/AppLogin'
+import AppRegister from './components/AppRegister'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const routes = [
   {name: 'movies', path: '/movies', component: AppMovies},
   {name: 'add', path: '/add', component: AddMovie},
   {name: 'login', path: '/login', component: AppLogin},
+  {name: 'register', path: '/register', component: AppRegister}
 ]
 const router = new VueRouter({
   routes,
@@ -25,6 +27,8 @@ router.beforeEach((to, from, next) => {
     next()
   } else if(!localStorage.getItem('token') && to.name === 'login') {
     next ()
+  } else if(!localStorage.getItem('token') && to.name === 'register') {
+    next()
   } else {
     next('/login')
   }

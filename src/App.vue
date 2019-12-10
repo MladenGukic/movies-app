@@ -3,6 +3,7 @@
     <nav class="navbar navbar-light bg-light">
   <router-link class="navbar-brand" to="/movies">  Movies </router-link>
   <router-link class="navbar-brand" to="/add">  Add Movie </router-link>
+  <router-link class="navbar-brand"  v-if="!isAuthenticated" to="/register"> Register </router-link>
   <router-link class="navbar-brand" v-if="!isAuthenticated" to="/login">  Login </router-link>
   <button class="btn btn-secondary" v-else @click="logout">Logout</button>
 </nav>
