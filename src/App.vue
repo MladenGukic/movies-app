@@ -3,6 +3,8 @@
     <nav class="navbar navbar-light bg-light">
   <router-link class="navbar-brand" to="/movies">  Movies </router-link>
   <router-link class="navbar-brand" to="/add">  Add Movie </router-link>
+  <router-link class="navbar-brand" v-if="!isAuthenticated" to="/login">  Login </router-link>
+  <button class="btn btn-secondary" v-else @click="logout">Logout</button>
 </nav>
   <router-view/>
   </div>
@@ -10,7 +12,22 @@
 
 <script>
 export default {
-  
+  computed: {
+    isAuthenticated() {
+      if(localStorage.getItem('token')) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+
+  methods: {
+    logout() {
+      localStorage.setItem('token', '')
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 

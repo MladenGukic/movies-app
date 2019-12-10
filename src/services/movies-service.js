@@ -4,11 +4,16 @@ export default class MovieService {
     constructor() {
         axios.defaults.baseURL = 'http://localhost:8000/api/'
 
-        axios.interceptors.response.use(function (response) {
-            return response;
-          }, function (error) {
-            return Promise.reject(error);
-          });
+        axios.defaults.headers.common = {
+            'Authorization':`Bearer ${localStorage.getItem('token')}`,
+             accept: 'application/json'
+        }
+
+        // axios.interceptors.response.use(function (response) {
+        //     return response;
+        //   }, function (error) {
+        //     return Promise.reject(error);
+        //   });
     }
 
     getAll(title) {
