@@ -6,21 +6,12 @@
       <th scope="row">Title:</th>
       <td>{{movie.title}}</td>
     </tr>
-    <tr>
-      <th scope="row">Director:</th>
-      <td>{{movie.director}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Genre:</th>
-      <td>{{movie.genre}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Duration:</th>
-      <td>{{movie.duration}}min</td>
-    </tr>
   </tbody>
 </table>
   <button type="button" class="btn btn-primary" @click="onSelect"> Select </button>
+  <button type="button" class="btn btn-warning" @click="navigateToMovieDetails(movie.id)">
+    View 
+  </button>
 </div>
 </template>
 
@@ -49,6 +40,10 @@ export default {
     methods: {
       onSelect() {
         this.$emit('selected-movie', this.movie)
+      },
+
+      navigateToMovieDetails(id) {
+          this.$router.push({name: 'movie', params:{id}})
       }
     }
 }

@@ -15,17 +15,14 @@
 export default {
   computed: {
     isAuthenticated() {
-      if(localStorage.getItem('token')) {
-        return true
-      } else {
-        return false
-      }
+      return this.$store.getters.isAuthenticated
     }
   },
 
   methods: {
     logout() {
       localStorage.setItem('token', '')
+      this.$store.commit('setIsAuthenticated', false )
       this.$router.push('/login')
     }
   }

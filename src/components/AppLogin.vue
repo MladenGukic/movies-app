@@ -28,7 +28,9 @@ export default {
     methods: {
         login() {
             authService.login(this.credentials)
-            .then(r => {localStorage.setItem('token', r.data.token)})
+            .then(r => {
+              localStorage.setItem('token', r.data.token)
+                   this.$store.commit('setIsAuthenticated', true)})
             .then(() => this.$router.push('/movies'))
             .catch(error => this.error = error.response.data.error)
         }
